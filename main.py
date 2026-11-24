@@ -46,7 +46,9 @@ def validate(story: str) -> None:
 def main() -> None:
     validate(STORY)
     output_path = os.environ.get("OUTPUT_PATH", "/output/entry.txt")
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    out_dir = os.path.dirname(output_path)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
     with open(output_path, "w", encoding="utf-8", newline="\n") as f:
         f.write(STORY + "\n")
     with open(output_path, encoding="utf-8") as f:
